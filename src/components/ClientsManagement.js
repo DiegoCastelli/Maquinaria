@@ -32,7 +32,7 @@ useEffect(() => {
 
   fetchClients();
 }, []);
-
+//comentario
 
  const handleAddClient = async () => {
   if (newClient.name.trim()) {
