@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const LayoutHeader = ({ currentPage, onNavigate }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,91 +30,51 @@ const LayoutHeader = ({ currentPage, onNavigate }) => {
     setIsMenuOpen(false);
   };
 
+  const buttonClass = (page) =>
+    `flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${
+      currentPage === page ? 'bg-black text-white' : 'text-gray-600 hover:bg-gray-100'
+    }`;
+
   return (
     <header className="w-full bg-white shadow-sm p-4 flex justify-between items-center sticky top-0 z-10">
       <h1 className="text-2xl font-bold text-gray-800">{getPageTitle()}</h1>
-
-      {/* Botón hamburguesa solo visible en móvil */}
-      <button
-        className="md:hidden text-gray-600 hover:text-gray-800 focus:outline-none"
-        onClick={toggleMenu}
-        aria-label="Toggle menu"
-      >
-        {/* Icono hamburguesa simple */}
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          {isMenuOpen ? (
-            // Icono de cerrar (X)
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          ) : (
-            // Icono hamburguesa
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          )}
-        </svg>
-      </button>
-
-      {/* Menú para pantallas md+ */}
-      <nav className="hidden md:flex space-x-4">
+      <nav className="flex space-x-4">
         <button
-          onClick={() => handleNavigate('dashboard')}
+          onClick={() => onNavigate('dashboard')}
           className={`px-4 py-2 rounded-lg transition-colors ${
-            currentPage === 'dashboard'
-              ? 'bg-black text-white'
-              : 'text-gray-600 hover:bg-gray-100'
+            currentPage === 'dashboard' ? 'bg-black text-white' : 'text-gray-600 hover:bg-gray-100'
           }`}
         >
           Inicio
         </button>
         <button
-          onClick={() => handleNavigate('clients')}
+          onClick={() => onNavigate('clients')}
           className={`px-4 py-2 rounded-lg transition-colors ${
-            currentPage === 'clients'
-              ? 'bg-black text-white'
-              : 'text-gray-600 hover:bg-gray-100'
+            currentPage === 'clients' ? 'bg-black text-white' : 'text-gray-600 hover:bg-gray-100'
           }`}
         >
           Clientes
         </button>
         <button
-          onClick={() => handleNavigate('machinery')}
+          onClick={() => onNavigate('machinery')}
           className={`px-4 py-2 rounded-lg transition-colors ${
-            currentPage === 'machinery'
-              ? 'bg-black text-white'
-              : 'text-gray-600 hover:bg-gray-100'
+            currentPage === 'machinery' ? 'bg-black text-white' : 'text-gray-600 hover:bg-gray-100'
           }`}
         >
           Recursos
         </button>
         <button
-          onClick={() => handleNavigate('jobs')}
+          onClick={() => onNavigate('jobs')}
           className={`px-4 py-2 rounded-lg transition-colors ${
-            currentPage === 'jobs'
-              ? 'bg-black text-white'
-              : 'text-gray-600 hover:bg-gray-100'
+            currentPage === 'jobs' ? 'bg-black text-white' : 'text-gray-600 hover:bg-gray-100'
           }`}
         >
           Trabajos
         </button>
         <button
-          onClick={() => handleNavigate('reports')}
+          onClick={() => onNavigate('reports')}
           className={`px-4 py-2 rounded-lg transition-colors ${
-            currentPage === 'reports'
-              ? 'bg-black text-white'
-              : 'text-gray-600 hover:bg-gray-100'
+            currentPage === 'reports' ? 'bg-black text-white' : 'text-gray-600 hover:bg-gray-100'
           }`}
         >
           Reportes
